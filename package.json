@@ -16,7 +16,8 @@
     "fetch-spot-direct": "node tools/fetch-spot-direct.js",
     "fetch-iv": "node tools/fetch-iv.js",
     "hedge": "node tools/hedge.js",
-    "update": "node tools/update.js"
+    "update": "node tools/update.js",
+    "fetch-coinmarketcap": "node tools/fetch-coinmarketcap.js"
   },
   "keywords": [],
   "author": "FundMaker",
