@@ -1,0 +1,48 @@
+{
+  "name": "fundmaker-strategy-sdk",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "print-pools": "node tools/pools-csv.js -p",
+    "export-pools": "node tools/pools-csv.js -e",
+    "import-pools": "node tools/pools-csv.js -i",
+    "pool-finder": "node tools/pool-finder.js",
+    "strategy": "node tools/strategy.js",
+    "generate": "drizzle-kit generate",
+    "migrate": "drizzle-kit migrate",
+    "stats": "node tools/stats.js",
+    "fetch-spot": "node tools/fetch-spot-bv.js",
+    "fetch-spot-direct": "node tools/fetch-spot-direct.js",
+    "fetch-iv": "node tools/fetch-iv.js",
+    "hedge": "node tools/hedge.js",
+    "update": "node tools/update.js"
+  },
+  "keywords": [],
+  "author": "FundMaker",
+  "license": "MIT",
+  "description": "",
+  "dependencies": {
+    "@json2csv/plainjs": "^7.0.6",
+    "adm-zip": "^0.5.16",
+    "axios": "^1.7.7",
+    "axios-retry": "^4.5.0",
+    "better-sqlite3": "^11.3.0",
+    "bignumber.js": "^9.1.2",
+    "commander": "^12.1.0",
+    "csv-parse": "^5.5.6",
+    "csv-parser": "^3.0.0",
+    "csv-writer": "^1.6.0",
+    "decimal.js": "^10.4.3",
+    "dotenv": "^16.4.5",
+    "drizzle-orm": "^0.33.0",
+    "fast-csv": "^5.0.1",
+    "ml-regression-simple-linear": "^3.0.1"
+  },
+  "devDependencies": {
+    "drizzle-kit": "^0.24.2"
+  },
+  "imports": {
+    "#src/*": "./src/*"
+  }
+}

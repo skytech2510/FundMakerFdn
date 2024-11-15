@@ -1,0 +1,56 @@
+[
+  {
+    "strategyName": "ExampleStrat",
+    "hoursCheckOpen": [11, 21],
+    "volatilityThreshold": 67,
+    "hoursCheckClose": [10],
+    "positionOpenDays": 3,
+    "riskFreeRate": 0.03,
+    "priceRange": {
+      "uptickPercent": 5,
+      "downtickPercent": 5
+    },
+    "rebalance": {
+      "uptickPercent": 2,
+      "downtickPercent": 3
+    },
+    "options": [
+      {
+        "optionType": "call",
+        "strikePrice": 1,
+        "spotSymbol": "ETHUSDT",
+        "askBidRatio": 1.028,
+        "askIndexIVRatio": 1.09,
+        "dte": 30,
+        "closeCondition": {
+          "uptickPercent": 1
+        }
+      },
+      {
+        "optionType": "put",
+        "strikePrice": 1,
+        "spotSymbol": "ETHUSDT",
+        "askBidRatio": 1.028,
+        "askIndexIVRatio": 1.09,
+        "dte": 30,
+        "closeCondition": {
+          "downtickPercent": 1
+        }
+      }
+    ],
+    "trading": [
+      {
+        "positionType": "long",
+        "entryPricePercent": 0,
+        "takeProfitPercent": 1,
+        "stopLossPercent": -1
+      },
+      {
+        "positionType": "short",
+        "entryPricePercent": -1,
+        "takeProfitPercent": -2,
+        "stopLossPercent": 0
+      }
+    ]
+  }
+]
