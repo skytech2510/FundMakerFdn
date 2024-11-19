@@ -1,38 +1,34 @@
+import { delay } from "#src/misc-utils.js";
 import axios from "axios";
-import dotenv from "dotenv";
-dotenv.config();
-const limit = 5000;
-const sort = "market_cap";
-const sort_dir = "asc"; //asc or desc
-const COINMARKETCAP_API_KEY = "d1fbffa3-54f4-4d3f-83bb-7aa57df4e73d";
-async function fetchTopAllCoinMarketCaps() {
+import "dotenv/config";
+async function fetchTopAllCoinMarketCaps(limit, sort, sort_dir, amount) {
   // Top 10000
-  const url =
-    "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest";
+  amount = amount || 10000;
   const params = {
     start: "1",
-    limit: limit,
-    sort: sort,
-    sort_dir: sort_dir,
+    limit: limit ?? 5000,
+    sort: sort ?? "market_cap",
+    sort_dir: sort_dir ?? "asc",
   };
   const headers = {
-    "X-CMC_PRO_API_KEY": COINMARKETCAP_API_KEY,
-    // "X-CMC_PRO_API_KEY": "d1fbffa3-54f4-4d3f-83bb-7aa57df4e73d",
+    "X-CMC_PRO_API_KEY": process.env.COINMARKETCAP_API_KEY,
   };
   console.log(headers);
-  try {
-    const response1 = await axios.get(url, { params, headers });
+  let result = [];
+  for (let i = 1; i <= Math.ceil(amount / limit); i++) {
+    params.start = (i - 1) * limit + 1;
+    const url = process.env.COINMARKETCAP_LATEST_PRICES_URL;
     try {
-      params.start = params.start + limit;
-      const response2 = await axios.get(url, { params, headers });
-      console.log(response1.data.data.length);
-    } catch (e) {
-      console.log(e);
+      const response = await axios.get(url, { params, headers });
+      result = result.concat(response.data.data);
+      console.log(response.data.data);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      await delay(100);
     }
-  } catch (e) {
-    console.log(e);
   }
 }
-fetchTopAllCoinMarketCaps().then(() => {
+fetchTopAllCoinMarketCaps(5000, "", "", 10000).then(() => {
   console.log("done");
 });
